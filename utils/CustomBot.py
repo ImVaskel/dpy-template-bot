@@ -5,6 +5,7 @@ import traceback
 from typing import List
 
 import discord
+from discord import message
 import toml
 from discord.ext import commands
 
@@ -18,14 +19,16 @@ intents = discord.Intents(
     presences=False # Same story as above
 )
 
-def get_pre(bot: CustomBot, message: discord.Message) -> List[str]:
-    return commands.when_mentioned_or(bot.config["discord"]["prefix"])(bot, message)
-
 class CustomBot(commands.Bot):
     def __init__(self, **options) -> None:
-        super().__init__(command_prefix=get_pre, intents=intents, **options)
 
         self.config = toml.load("./config.toml")
+
+        super().__init__(
+            command_prefix=commands.when_mentioned_or(self.config["discord"]["prefix"]),
+            owner_ids = self.config["discord"]["owner_ids"], 
+            intents=intents, 
+            **options)
 
         self._logger = logging.getLogger(__name__)
         
