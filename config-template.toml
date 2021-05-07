@@ -2,7 +2,6 @@
     token = ""
     prefix = ""
  
-    # Embed Colors, they must be able to be `int`d
     embed_color = 0x2F3136
     error_color = 0xe74c3c
 
