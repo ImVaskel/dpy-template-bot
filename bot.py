@@ -1,7 +1,7 @@
 import logging
 from utils.CustomBot import CustomBot
 
-logger = logging.getLogger("discord")
+logger = logging.getLogger("root")
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler() 
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))

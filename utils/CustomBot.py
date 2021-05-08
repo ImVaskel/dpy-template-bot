@@ -2,22 +2,11 @@ from __future__ import annotations
 
 import logging
 import traceback
-from typing import List
 
 import discord
-from discord import message
 import toml
 from discord.ext import commands
 
-intents = discord.Intents(
-    messages=True,
-    guilds=True,
-    bans=True,
-    emojis=True,
-    typing=False, # we don't need typing.
-    members=True, # Can turn this to true or false depending on if you want / have them
-    presences=False # Same story as above
-)
 
 class CustomBot(commands.Bot):
     def __init__(self, **options) -> None:
@@ -27,7 +16,15 @@ class CustomBot(commands.Bot):
         super().__init__(
             command_prefix=commands.when_mentioned_or(self.config["discord"]["prefix"]),
             owner_ids = self.config["discord"]["owner_ids"], 
-            intents=intents, 
+            intents= discord.Intents(
+                messages=True,
+                guilds=True,
+                bans=True,
+                emojis=True,
+                typing=False, # we don't need typing.
+                members=self.config["discord"]["members_intent"], # Can turn this to true or false depending on if you want / have them
+                presences=self.config["discord"]["presences_intent"] # Same story as above
+                ), 
             **options)
 
         self._logger = logging.getLogger(__name__)

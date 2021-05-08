@@ -1,3 +1,4 @@
 discord.py==1.7.2
 toml
 git+https://github.com/Gorialis/jishaku
+psutil
