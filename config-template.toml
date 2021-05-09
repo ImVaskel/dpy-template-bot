@@ -1,19 +1,30 @@
-[discord]
-    token = ""
-    prefix = ""
- 
-    # Intents Stuff
-    members_intent = true
-    presences_intent = false
+[bot]
+token = ""
+prefix = ""
 
-
-    owner_ids = [
+owner_ids = [
         # ids here
     ]
-
-    embed_color = 0x2F3136
-    error_color = 0xe74c3c
-
-    extensions = [
-        "jishaku"
+extensions = [
+        "jishaku", "cogs.owner", "cogs.errors"
     ]
+
+[bot.intents]
+members = true
+presences = false
+
+[bot.allowed_mentions]
+everyone = false
+users = false
+roles = false
+replied_user = false
+
+[bot.config]
+embed_color = 0x2F3136
+error_color = 0xe74c3c
+
+[logging]
+webhook_url = ""
+format = "%(asctime)s:%(levelname)s:%(name)s: %(message)s"
+level = "INFO" # INFO, DEBUG 
+    

@@ -7,4 +7,4 @@ To run the bot you must do the following:
 
 # Contributing
 
-To contribute, simply open a pull request. It is requested that you use `flake8` linter for linting.
+To contribute, simply open a pull request. It is requested that things are typed.
