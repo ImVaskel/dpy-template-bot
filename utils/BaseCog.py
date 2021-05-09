@@ -6,6 +6,8 @@ from discord.ext import commands
 if TYPE_CHECKING:
     from .CustomBot import CustomBot
 
+__all__ = ("BaseCog",)
+
 class BaseCog(commands.Cog):
     __slots__ = "bot"
 

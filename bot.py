@@ -1,4 +1,3 @@
-import logging
 from utils.CustomBot import CustomBot
 
 if __name__ == "__main__":

@@ -3,13 +3,10 @@ import logging
 from typing import TYPE_CHECKING, Tuple
 
 from discord.ext.commands.errors import CommandError
-from utils.CustomBot import CustomBot
-from utils.BaseCog import BaseCog
+from utils import BaseCog, Codeblock, CustomBot
 
 import discord
 from discord.ext import commands
-
-from utils.models import Codeblock
 
 class ErrorHandler(BaseCog):
     __slots__ = ("bot", "ignored_errors", "_logger")

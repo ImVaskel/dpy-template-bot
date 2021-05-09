@@ -8,6 +8,7 @@ import discord
 import toml
 from discord.ext import commands
 
+__all__ = ("CustomBot",)
 
 class CustomBot(commands.AutoShardedBot):
     def __init__(self, **options) -> None:

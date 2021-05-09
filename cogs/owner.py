@@ -3,9 +3,8 @@ from __future__ import annotations
 import traceback
 from typing import TYPE_CHECKING
 
-from utils.BaseCog import BaseCog
+from utils import BaseCog, Codeblock
 from discord.ext import commands
-from utils.models import Codeblock
 
 if TYPE_CHECKING:
     from utils.CustomBot import CustomBot
