@@ -47,7 +47,8 @@ class CustomBot(commands.AutoShardedBot):
 
     async def on_error(self, event_method, *args, **kwargs) -> None:
         self._logger.error(f"An Error Occurred: {event_method}\n")
-        self._logger.error(str(sys.exc_info()))
+        _, _, trace = sys.exc_info()
+        self._logger.error(''.join(traceback.format_tb(trace)))
 
     def _init_logging(self) -> None:
         logger = logging.getLogger()

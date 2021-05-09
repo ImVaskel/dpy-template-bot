@@ -1,6 +1,8 @@
 import traceback
 import logging
 from typing import TYPE_CHECKING, Tuple
+
+from discord.ext.commands.errors import CommandError
 from utils.CustomBot import CustomBot
 from utils.BaseCog import BaseCog
 
@@ -23,13 +25,13 @@ class ErrorHandler(BaseCog):
         self._logger = logging.getLogger(__name__)  
 
     @commands.Cog.listener()
-    async def on_command_error(self, ctx: commands.Context, error: Exception):
+    async def on_command_error(self, ctx: commands.Context, error: CommandError):
         error = getattr(error, "original", error) # Unpack the error
 
         if isinstance(error, self.ignored_errors):
             return
 
-        if isinstance(error, discord.DiscordException):
+        if isinstance(error, CommandError):
             embed = discord.Embed(description=str(error))
             await ctx.reply(embed=embed)
 

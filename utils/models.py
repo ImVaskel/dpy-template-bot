@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Optional
 
 class Codeblock:
     """
@@ -6,7 +7,7 @@ class Codeblock:
 
     Takes params ``code`` and ``lang``, which is optional.
     """
-    def __init__(self, code: str, *, lang: str = None) -> None:
+    def __init__(self, code: str, *, lang: Optional[str] = None) -> None:
         self.code = code
         self.lang = lang
     
