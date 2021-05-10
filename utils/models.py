@@ -1,4 +1,4 @@
-from __future__ import annotationsOptional
+from __future__ import annotations
 
 __all__ = ("Codeblock",)
 

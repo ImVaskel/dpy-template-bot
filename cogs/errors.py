@@ -29,11 +29,11 @@ class ErrorHandler(BaseCog):
             return
 
         if isinstance(error, CommandError):
-            embed = discord.Embed(description=str(error))
+            embed = discord.Embed(description=str(error), color=self.bot.error_color)
             await ctx.reply(embed=embed)
 
         else:
-            embed = discord.Embed(description=Codeblock(str(error), lang="py"))
+            embed = discord.Embed(description=Codeblock(str(error), lang="py"), color=self.bot.error_color)
             await ctx.reply(embed=embed)
             self._logger.error(''.join(traceback.format_tb(error.__traceback__)))
             

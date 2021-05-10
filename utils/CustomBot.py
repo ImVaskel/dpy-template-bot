@@ -5,6 +5,7 @@ import traceback
 import sys
 
 import discord
+from discord.ext.commands.errors import ExtensionFailed
 import toml
 from discord.ext import commands
 
@@ -33,6 +34,9 @@ class CustomBot(commands.AutoShardedBot):
         
         self._logger = logging.getLogger(__name__)
         
+        self.color = self.config["bot"]["config"]["color"]
+        self.error_color = self.config["bot"]["config"]["error_color"]
+
         self.load_extensions()
 
     def run(self, token: str = None, *, reconnect = True) -> None:
@@ -43,8 +47,8 @@ class CustomBot(commands.AutoShardedBot):
             try:
                 self.load_extension(extension)
                 self._logger.info(f"Loaded Extension {extension}")
-            except Exception as e:
-                self._logger.error(f"Failed to Load Extension {extension} \n {''.join(traceback.format_tb(e.__traceback__))}")           
+            except ExtensionFailed as e:
+                self._logger.error(f"Failed to Load Extension {extension} \n {e}")           
 
     async def on_error(self, event_method, *args, **kwargs) -> None:
         self._logger.error(f"An Error Occurred: {event_method}\n")

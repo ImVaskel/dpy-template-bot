@@ -6,7 +6,7 @@ owner_ids = [
         # ids here
     ]
 extensions = [
-        "jishaku", "cogs.owner", "cogs.errors"
+        "jishaku", "cogs.owner", "cogs.errors", "cogs.help"
     ]
 
 [bot.intents]
@@ -20,7 +20,7 @@ roles = false
 replied_user = false
 
 [bot.config]
-embed_color = 0x2F3136
+color = 0x2F3136
 error_color = 0xe74c3c
 
 [logging]

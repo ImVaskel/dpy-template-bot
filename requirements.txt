@@ -1,4 +1,5 @@
 git+https://github.com/rapptz/discord.py
+git+https://github.com/rapptz/discord-ext-menus
 toml
 git+https://github.com/Gorialis/jishaku
 psutil

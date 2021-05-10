@@ -1,4 +1,4 @@
-from utils.CustomBot import CustomBot
+from utils import CustomBot
 
 if __name__ == "__main__":
 
