@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import traceback
 import sys
 
@@ -37,6 +38,7 @@ class CustomBot(commands.AutoShardedBot):
         self.color = self.config["bot"]["config"]["color"]
         self.error_color = self.config["bot"]["config"]["error_color"]
 
+        self._set_env()
         self.load_extensions()
 
     def run(self, token: str = None, *, reconnect = True) -> None:
@@ -61,3 +63,8 @@ class CustomBot(commands.AutoShardedBot):
         handler = logging.StreamHandler()
         handler.setFormatter(logging.Formatter(self.config["logging"]["format"]))     
         logger.addHandler(handler)
+    
+    def _set_env(self) -> None:
+        """Sets the envs from the config"""
+        for env, val in self.config["env"].items():
+            os.environ[env] = val

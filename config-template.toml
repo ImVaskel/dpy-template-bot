@@ -23,6 +23,11 @@ replied_user = false
 color = 0x2F3136
 error_color = 0xe74c3c
 
+[env]
+JISHAKU_NO_UNDERSCORE = "True"
+JISHAKU_NO_DM_TRACEBACK = "True"
+JISHAKU_HIDE = "True"
+
 [logging]
 webhook_url = ""
 format = "%(asctime)s:%(levelname)s:%(name)s: %(message)s"
