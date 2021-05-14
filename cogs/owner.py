@@ -7,9 +7,9 @@ from discord.ext.commands.errors import ExtensionError
 from utils import BaseCog, Codeblock, CustomBot
 from discord.ext import commands 
 
-class CleanupFlags(commands.FlagConverter):
-    num: Optional[int] = 5
-    bulk: Optional[bool] = False
+class CleanupFlags(commands.FlagConverter, prefix="/", delimiter="", case_insensitive=True):
+    num: int = 5
+    bulk: bool = False
 
 class OwnerCog(BaseCog, name="owner"):
 
@@ -31,7 +31,8 @@ class OwnerCog(BaseCog, name="owner"):
     @dev_group.command()
     @commands.is_owner()
     async def cleanup(self, ctx: commands.Context, *, flags: CleanupFlags):
-        num = len(await ctx.channel.purge(limit = flags.num, check = lambda m: m == self.bot.user, bulk = flags.bulk))
+        num = len(await ctx.channel.purge(limit = flags.num+1, check = lambda m: m.author == ctx.bot.user, bulk = flags.bulk))
+
         await ctx.reply(
             embed = discord.Embed(description=f"\N{THUMBS UP SIGN} Successfully deleted {num}/{flags.num} messages.", color=self.bot.color), 
             delete_after=25
