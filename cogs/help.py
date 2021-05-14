@@ -1,7 +1,5 @@
 from utils import CustomBot, CustomHelp
-import discord
 from discord.ext import commands
-
 
 class HelpCog(commands.Cog):
     def __init__(self, bot: CustomBot) -> None:
