@@ -5,7 +5,7 @@ from typing import Optional
 import discord
 from discord.ext.commands.errors import ExtensionError
 from utils import BaseCog, Codeblock, CustomBot
-from discord.ext import commands 
+from discord.ext import commands
 
 class CleanupFlags(commands.FlagConverter, prefix="/", delimiter="", case_insensitive=True):
     num: int = 5

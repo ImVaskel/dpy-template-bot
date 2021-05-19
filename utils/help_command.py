@@ -1,4 +1,4 @@
-from typing import List, Mapping, NamedTuple, Optional
+from typing import List, Mapping, NamedTuple, Optional, Tuple
 
 import discord
 from discord.ext import commands, menus
@@ -7,17 +7,15 @@ from discord.ext.commands.core import Command, Group
 
 __all__ = ("CustomHelp",)
 
-BotHelp = NamedTuple("BotHelp", [("cog", Cog), ("commands", List[Command])]) # Use a NamedTuple for easier to read typehinting
-
 class HelpPaginator(menus.MenuPages):
     def __init__(self, source, **kwargs):
         super().__init__(source, **kwargs)
 
 class BotHelpSource(menus.ListPageSource):
-    def __init__(self, entries, *, per_page=5):
+    def __init__(self, entries, *, per_page=4):
         super().__init__(entries, per_page=per_page)
 
-    async def format_page(self, menu: menus.Menu, entries: List[BotHelp]):
+    async def format_page(self, menu: menus.Menu, entries: List[Tuple[Cog, List[Command]]]):
 
         embed = discord.Embed(
                 color=menu.ctx.bot.color,
@@ -110,16 +108,16 @@ class CustomHelp(commands.HelpCommand):
     
     async def send_bot_help(self, mapping: Mapping[Optional[Cog], List[Command]]):
 
-        filtered_commands: List[BotHelp] = []
+        filtered_commands: List[Tuple[Cog, List[Command]]] = []
 
         for cog, commands in mapping.items():
 
             filtered = await self.filter_commands(commands)
 
             if filtered:
-                filtered_commands.append(BotHelp(cog, commands))
+                filtered_commands.append((cog, commands))
 
-        menu = HelpPaginator(BotHelpSource(filtered_commands, per_page=4))
+        menu = HelpPaginator(BotHelpSource(filtered_commands))
         await menu.start(self.context)
     
     async def send_group_help(self, group: Group):

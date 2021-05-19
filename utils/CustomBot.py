@@ -26,6 +26,7 @@ class CustomBot(commands.AutoShardedBot):
                 bans=True,
                 emojis=True,
                 typing=False, # we don't need typing.
+                reactions=True,
                 **self.config["bot"]["intents"]
                 ), 
             allowed_mentions=discord.AllowedMentions(**self.config["bot"]["allowed_mentions"]),
@@ -50,7 +51,7 @@ class CustomBot(commands.AutoShardedBot):
                 self.load_extension(extension)
                 self._logger.info(f"Loaded Extension {extension}")
             except ExtensionFailed as e:
-                self._logger.error(f"Failed to Load Extension {extension} \n {e}")           
+                self._logger.error(f"Failed to Load Extension {extension} \n {e}")
 
     async def on_error(self, event_method, *args, **kwargs) -> None:
         self._logger.error(f"An Error Occurred: {event_method}\n")
@@ -61,9 +62,9 @@ class CustomBot(commands.AutoShardedBot):
         logger = logging.getLogger()
         logger.setLevel(getattr(logging, self.config["logging"]["level"]))
         handler = logging.StreamHandler()
-        handler.setFormatter(logging.Formatter(self.config["logging"]["format"]))     
+        handler.setFormatter(logging.Formatter(self.config["logging"]["format"]))
         logger.addHandler(handler)
-    
+
     def _set_env(self) -> None:
         """Sets the envs from the config"""
         for env, val in self.config["env"].items():

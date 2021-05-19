@@ -1,10 +1,7 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
 from discord.ext import commands
-
-if TYPE_CHECKING:
-    from .CustomBot import CustomBot
+from utils import CustomBot
 
 __all__ = ("BaseCog",)
 
