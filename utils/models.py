@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-__all__ = ("Codeblock",)
+__all__ = [
+    "Codeblock"
+]
 
 class Codeblock:
     """

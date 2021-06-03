@@ -32,4 +32,3 @@ JISHAKU_HIDE = "True"
 webhook_url = ""
 format = "%(asctime)s:%(levelname)s:%(name)s: %(message)s"
 level = "INFO" # INFO, DEBUG 
-    
